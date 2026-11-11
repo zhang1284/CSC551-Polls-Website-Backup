@@ -1,0 +1,25 @@
+{% include "polls/auth_status.html" %}
+
+{% if welcome_message %}
+   <p><strong>{{ welcome_message }}</strong></p>
+{% endif %}
+
+<p>You have visited the Polls page {{ visit_count }} times.</p>
+
+{% if last_viewed_poll %}
+   <p>You recently viewed: <a href="{% url 'polls:detail' last_viewed_poll.id %}">{{ last_viewed_poll.question_text}}</a></p>
+{% endif %}
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">

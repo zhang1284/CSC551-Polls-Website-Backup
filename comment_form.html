@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a comment</title>
+</head>
+<body>
+    <h1>Add a comment</h1>
+
+    <p>Question: {{question.question_text}}</p>
+    <p>Posting as: {{ user.username}}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Post comment</button>
+    </form>
+
+    <p>
+        <a href="{%url 'polls:detail' question.pk %}">
+            Back to question
+        </a>
+     </p>
+</body>
+</html>
